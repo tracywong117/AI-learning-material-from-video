@@ -1,14 +1,14 @@
 # AI-learning-material-from-video
 This repository contains Python application designed for automatically transcribing video into text, translating the text, and burning the subtitles into the video. The application utilizes the Whisper model for transcription and optionally integrates with the OpenAI GPT-4 API for translation.
 
-#### Features
+## Features
 - **Automatic Transcription**: Utilizes Whisper's model to transcribe audio into text, complete with timestamps.
 - **Subtitle File Creation**: Converts transcription results into the SRT subtitle format.
 - **Translation**: Offers an option to translate subtitles using manual input or automated translation via the OpenAI GPT-4 API.
 - **Subtitle Burning**: Embeds subtitles directly into the video, providing an option to burn both original and translated subtitles.
 - **Generate Learning Material from video (TODO)**
 
-#### Setup
+## Setup
 1. Clone the repository:
    ```bash
    git clone https://github.com/tracywong117/AI-learning-material-from-video.git
@@ -22,7 +22,7 @@ This repository contains Python application designed for automatically transcrib
 
 3. Obtain an API key from OpenAI if you intend to use automated translation via GPT-4. Set this key in your environment variables or directly in your script securely.
 
-#### Usage
+## Usage
 1. **Transcription and Subtitling**:
    - Modify the `input_video_file` path in the script to point to your video file.
    - Set `require_transcript` to `True` if transcription is needed; otherwise, it can load an existing transcript.
@@ -39,9 +39,9 @@ This repository contains Python application designed for automatically transcrib
      python translate_srt_and_burn.py
      ```
 
-#### Notes
+## Notes
 - Always review the subtitles for accuracy and synchronization issues, particularly after using automated tools for transcription and translation.
 - For detailed customization (e.g., changing the model used for transcription), refer to the scripts and modify parameters or function calls as needed.
 
-#### Support
+## Support
 For issues, suggestions, or contributions, please open an issue or a pull request in this repository.
