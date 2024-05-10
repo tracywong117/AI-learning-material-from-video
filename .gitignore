@@ -1,3 +1,4 @@
 *.mp3
 *.mp4
 *.ipynb
+__pycache__/
