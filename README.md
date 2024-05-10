@@ -26,22 +26,23 @@ This repository contains Python application designed for automatically transcrib
 1. **Transcription and Subtitling**:
    - Modify the `input_video_file` path in the script to point to your video file.
    - Set `require_transcript` to `True` if transcription is needed; otherwise, it can load an existing transcript.
+   - Set `require_burn_subtitle` to `True` if burning subtitle is needed.
    - Run the script to transcribe, translate (if using the API), and burn subtitles:
      ```bash
-     python transcript_to_srt.py
+     python whisper-transcript-subtitling.py
      ```
 
-2. **Translation and Subtitle Burning**:
+2. **Translation and Subtitling**:
    - Ensure the transcript SRT file is named correctly and in the same directory as your script.
    - If using the GPT-4 API for translation, ensure `translate_option` is set to `"api"` and your API key is correctly configured.
+   - Set `require_burn_subtitle` to `True` if burning subtitle is needed.
    - Run the script:
      ```bash
-     python translate_srt_and_burn.py
+     python gpt-translate-subtitling.py
      ```
 
 ## Notes
-- Always review the subtitles for accuracy and synchronization issues, particularly after using automated tools for transcription and translation.
-- For detailed customization (e.g., changing the model used for transcription), refer to the scripts and modify parameters or function calls as needed.
+- Review the subtitles for accuracy and synchronization issues after using the AI.
 
 ## Support
 For issues, suggestions, or contributions, please open an issue or a pull request in this repository.
