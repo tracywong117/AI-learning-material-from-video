@@ -10,6 +10,8 @@ from utils import *
 input_video_file = "korean-drama.mp4" # file path to the video file
 require_transcript = True # True: use whisper to transcript; False: load existing transcript file
 require_burn_subtitle = True # True: burn subtitle to video; False: do not burn subtitle to video
+use_Groq = False # True: use Groq; False: use local
+groq_api_key = 'your_groq_api_key' # Your Groq API Key
 
 input_video_name = os.path.basename(input_video_file)
 output_audio_file = f"audio_{input_video_name}.mp3"
@@ -17,20 +19,47 @@ transcript_file = f"transcript_{input_video_name}.srt"
 output_video_file = f"{input_video_name}_subtitle.mp4"
 
 if require_transcript:
-    import whisper
-    model = whisper.load_model("small")
+    if use_Groq:
+        # use Groq api
+        import requests
+
+        url = 'https://api.groq.com/openai/v1/audio/transcriptions'
+
+        headers = {
+            'Authorization': f'Bearer {groq_api_key}'
+        }
+        
+        data = {
+            'model': 'whisper-large-v3',
+            'response_format': 'verbose_json'
+        }
+
+    else:
+        # run whisper locally
+        import whisper
+        model = whisper.load_model("small")
+        
 
 if require_transcript:
     # convert video to mp3
-    print("Converting video to mp3...")
-    convert_to_mp3(input_video_file, output_audio_file)
-    print("Done!")
+    # print("Converting video to mp3...")
+    # convert_to_mp3(input_video_file, output_audio_file)
+    # print("Done!")
 
     # transcribe mp3 using whisper
     print("Transcribing...")
-    transcribe_result = model.transcribe(
-        audio=output_audio_file, word_timestamps=True, task="transcribe"
-    )
+    if use_Groq:
+        files = {
+            'file': (output_audio_file, open(f'./{output_audio_file}', 'rb'), 'audio/mp3')
+        }
+        transcribe_result = requests.post(url, headers=headers, files=files, data=data).json()
+        files['file'][1].close()
+        
+        print(transcribe_result)
+    else:
+        transcribe_result = model.transcribe(
+            audio=output_audio_file, word_timestamps=True, task="transcribe"
+        )
     print("Done!")
     print(transcribe_result["text"])
 

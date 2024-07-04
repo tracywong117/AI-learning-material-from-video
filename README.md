@@ -8,6 +8,13 @@ This repository contains Python application designed for automatically transcrib
 - **Subtitle Burning**: Embeds subtitles directly into the video, providing an option to burn both original and translated subtitles.
 - **Generate Learning Material from video (TODO)**
 
+## Update
+- Added Groq inference for Whisper 
+
+
+### Groq inference
+Groq provides free and fast inference within a quota. Check out https://console.groq.com/playground. All you need to do is signing up and create an API key.
+
 ## Setup
 1. Clone the repository:
    ```bash
@@ -27,6 +34,8 @@ This repository contains Python application designed for automatically transcrib
    - Modify the `input_video_file` path in the script to point to your video file.
    - Set `require_transcript` to `True` if transcription is needed; otherwise, it can load an existing transcript.
    - Set `require_burn_subtitle` to `True` if burning subtitle is needed.
+   - Set `use_Groq` to `True` if you want to use Groq inference instead of local inference (Whisper)
+   - Set `groq_api_key` to your Groq Api Key
    - Run the script to transcribe, translate (if using the API), and burn subtitles:
      ```bash
      python whisper-transcript-subtitling.py

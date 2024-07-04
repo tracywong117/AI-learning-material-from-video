@@ -31,9 +31,6 @@ for i, subtitle in enumerate(subtitle_list):
 
 instruction = """你是一個專業的韓文譯中文的翻譯員，以下是一部韓國電視劇的文字轉錄，請翻譯成繁體中文，翻譯風格應該是日常口語，並以同樣格式顯示，即每一句為{序號} {譯文}。\n"""
 prompt = instruction + simplified_subtitle_text
-print("Prompt:")
-print(prompt)
-print("-------")
 
 if translate_option == "api":
     # call GPT-4 API to translate
@@ -48,6 +45,10 @@ if translate_option == "api":
     translated_subtitle_text = response.choices[0].text.strip()
     
 elif translate_option == "manual":
+    print("Prompt:")
+    print(prompt)
+    print("-------")
+    print("You may copy and paste the above prompt to GPT-4 Playground to get the translated text.")
     # translated_subtitle_text = input("Enter the translated subtitle:\n")
     translated_subtitle_text = get_multiline_input()
     
